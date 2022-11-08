@@ -17,3 +17,13 @@ appq <- read_sav("APPQ663.sav")
 
 
 
+
+
+
+
+
+
+
+
+
+
