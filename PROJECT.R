@@ -1,18 +1,16 @@
 library(haven)
+setwd("C:/Users/chris/Downloads/MISC/measureproject/data")
 
 
 
-sbqr_demo <- read_sav("BGRD663.sav")
+sbqr_demo <- read_sav("BGRD683.sav")
 
 panas <- read_sav("PANAS683.sav")
 
 sadli <- read_sav("SADLI683.sav")
 
-ius <- read_sav("IUS663.sav")
 
-sias <- read_sav("SIAS663.sav")
-
-appq <- read_sav("APPQ663.sav")
+spai <- read_sav("SPAI683.sav")
 
 
 
