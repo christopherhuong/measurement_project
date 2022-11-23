@@ -52,11 +52,14 @@ sadli <- mutate(sadli,
                 sadli_depr = V1 + V2 + V5 + V6 + V8 + V9 +
                 V13 + V16 + V17 + V18 + V19 + V22)
 
+<<<<<<< HEAD
 library(knitr)
 kable(describe(sadli[,1:24]))
 
 alpha(sadli)
 
+=======
+>>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
 ##########################################################
 ###       SOCIAL PHOBIA AND ANXIETY INVENTORY - 23 
 ###       SPAI-23
@@ -77,6 +80,7 @@ spai <- mutate(spai,
 ###       SBQ-R
 
 
+<<<<<<< HEAD
 ### POSTIVE AND NEGATIVE AFFECT SCALE
 ### POSITIVE AFFECT
 
@@ -94,6 +98,8 @@ panas <- mutate(panas,
 #########################################################
 
 
+=======
+>>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
 
 
 
@@ -101,6 +107,7 @@ panas <- mutate(panas,
 
 
 #########################################################
+<<<<<<< HEAD
 ###                         CFA                       ###
 #########################################################
 
@@ -130,6 +137,10 @@ kable(summary(cfafit, fit.measures = T))
 # SRMR = 0.055          CUT OFF = < 0.08 = EXCELLENT FIT
 
 
+=======
+###                SUMMARY STATISTICS                 ###
+#########################################################
+>>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
 
 
 
