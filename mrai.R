@@ -106,7 +106,7 @@ cfa3 <- 'factor1 =~ V1 + V2 + V4 + V7 + V9 + V15 + V17
 
 
 
-cfa3fit <- cfa(cfa3, data = efadat,
+cfa3fit <- cfa(cfa3, data = efadat, std.lv = TRUE
                )
 
 summary(cfa3fit, fit.measures = T)
