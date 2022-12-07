@@ -52,17 +52,47 @@ sadli <- mutate(sadli,
                 sadli_depr = V1 + V2 + V5 + V6 + V8 + V9 +
                 V13 + V16 + V17 + V18 + V19 + V22)
 
-<<<<<<< HEAD
+library(psych)
 library(knitr)
-kable(describe(sadli[,1:24]))
 
-alpha(sadli)
 
-=======
->>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
+kable(describe(sadli[,1:24]),
+      digits = 2)
+
+### Social Anxiety Life Interference reliability
+
+alpha(sadli[,c("V3", "V4", "V7", "V10", "V11", "V12", "V14",
+               "V15", "V20", "V21", "V23", "V24")])
+
+omegah(sadli[,c("V3", "V4", "V7", "V10", "V11", "V12",
+                "V14","V15", "V20", "V21", "V23", "V24")],
+         nfactors = 1)
+
+
+### Depression Life Interference reliability
+
+alpha(sadli[, c("V1", "V2", "V5", "V6", "V8", "V9",
+                      "V13", "V16", "V17", "V18", "V19", "V22")])
+
+omegah(sadli[, c("V1", "V2", "V5", "V6", "V8", "V9",
+                 "V13", "V16", "V17", "V18", "V19", "V22")],
+       nfactors = 1)
+
+
+### Distribution
+
+
+multi.hist(sadli[,c("V3", "V4", "V7", "V10", "V11", "V12", "V14",
+              "V15", "V20", "V21", "V23", "V24")])
+
+
+multi.hist(sadli[, c("V1", "V2", "V5", "V6", "V8", "V9",
+                     "V13", "V16", "V17", "V18", "V19", "V22")])
+  
+  
+  
 ##########################################################
-###       SOCIAL PHOBIA AND ANXIETY INVENTORY - 23 
-###       SPAI-23
+###       SOCIAL PHOBIA AND ANXIETY INVENTORY - 23 (SPAI-23)
 ###      
 ###       COMPUTE SUM SCORES FOR SOCIAL PHOBIA SCALE
 
@@ -75,13 +105,9 @@ spai <- mutate(spai,
 spai <- mutate(spai,
                spai_agora = V17 + V18 + V19 + V20 + V21 + V22 + V23)
 
-#########################################################
-###       SUICIDAL BEHAVIORS QUESTIONNAIRE - REVISED
-###       SBQ-R
 
 
-<<<<<<< HEAD
-### POSTIVE AND NEGATIVE AFFECT SCALE
+### POSTIVE AND NEGATIVE AFFECT SCALE (PANAS)
 ### POSITIVE AFFECT
 
 panas <- mutate(panas,
@@ -98,16 +124,11 @@ panas <- mutate(panas,
 #########################################################
 
 
-=======
->>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
-
-
-
 
 
 
 #########################################################
-<<<<<<< HEAD
+
 ###                         CFA                       ###
 #########################################################
 
@@ -117,16 +138,51 @@ panas <- mutate(panas,
 
 library(lavaan)
 
-cfa_model <- 'sa =~ V3 + V4 + V7 + V10 + V11 + V12 + V14 + V15 + V20 + V21 + V23 + V24
-              depr =~ V1 + V2 + V5 + V6 + V8 + V9 + V13 + V16 + V17 + V18 + V19 + V22'
-
-
-
-cfafit <- cfa(cfa_model, data = sadli, std.lv = TRUE)
-
-kable(summary(cfafit, fit.measures = T))
-
-
+# cfa_model <- '
+# #factor loadings
+# sa =~ 1*V3 + V4 + V7 + V10 + V11 + V12 + V14 + V15 + V20 + V21 + V23 + V24
+# depr =~ 1*V1 + V2 + V5 + V6 + V8 + V9 + V13 + V16 + V17 + V18 + V19 + V22
+# 
+# #residual variances
+# V1 ~~ V1
+# V2 ~~ V2
+# V3 ~~ V3
+# V4 ~~ V4
+# V5 ~~ V5
+# V6 ~~ V6
+# V7 ~~ V7
+# V8 ~~ V8
+# V9 ~~ V9
+# V10 ~~ V10
+# V11 ~~ V11
+# V12 ~~ V12
+# V13 ~~ V13
+# V14 ~~ V14
+# V15 ~~ V15
+# V16 ~~ V16
+# V17 ~~ V17
+# V18 ~~ V18
+# V19 ~~ V19
+# V20 ~~ V20
+# V21 ~~ V21
+# V22 ~~ V22
+# V23 ~~ V23
+# V24 ~~ V24
+# 
+# #factor variance / covariance
+# sa ~~ sa
+# sa ~~ depr
+# depr ~~ depr
+# '
+# 
+# 
+# 
+# cfafit <- lavaan(cfa_model, data = sadli, std.lv = TRUE)
+# 
+# summary(cfafit,
+#         fit.measures = TRUE, standardized = TRUE)
+# 
+# 
 
 
 #  CFI = 0.883        CUT OFF  = ABOVE 0.90
@@ -137,37 +193,47 @@ kable(summary(cfafit, fit.measures = T))
 # SRMR = 0.055          CUT OFF = < 0.08 = EXCELLENT FIT
 
 
-=======
-###                SUMMARY STATISTICS                 ###
-#########################################################
->>>>>>> a20ad0b45d30809999d6fc47d48c4df5ab3dfdca
 
 
 
 
+library(lavaan)
+
+
+cfa_model1 <- '
+sa =~ V3 + V4 + V7 + V10 + V11 + V12 + V14 + V15 + V20 + V21 + V23 + V24
+depr =~ V1 + V2 + V5 + V6 + V8 + V9 + V13 + V16 + V17 + V18 + V19 + V22
+'
+
+
+cfa_fit1 <- cfa(cfa_model1, data = sadli, std.lv = TRUE)
+summary(cfa_fit1,
+        fit.measures = TRUE, standardized = TRUE)
+
+
+library(semPlot)
+
+semPaths(cfa_fit1, "par", "std",
+         style = "lisrel",
+         theme = "colorblind",
+         rotation = 2,
+         layout = "tree2",
+         manifests = paste0("V",1:24),
+         reorder = F,
+         cardinal = "lat cov")
 
 
 
-
-
-
-
-
-
-
-
-dat <- data.frame()[1:683, ]  # create new DF with n rows
-
-sbqr_demo <- sbqr_demo %>%                    #add and rename relevant variables to new df
-  add_column(  sadli_sa = sadli$sadli_sa,
-               sadli_depr = sadli$sadli_depr,
-               spai_sp = spai$spai_sp,
+sbqr_demo <- sbqr_demo %>%    #add and rename relevant variables to new df
+  add_column(  spai_sp = spai$spai_sp,
                spai_agora = spai$spai_agora,
                panas_p = panas$pos,
-               panas_n = panas$neg
-              
-              
+               panas_n = panas$neg,
+               sadli_sa = sadli$sadli_sa,
+               sadli_depr = sadli$sadli_depr,
   )
+              
+  
 
 
 
